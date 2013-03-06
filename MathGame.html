@@ -16,8 +16,8 @@
 
             <tr>
                 <td>
-                    <input type="text" size="10" maxlength="10" value="" id="mathAnswer"  />
-                    <input type="button" value="Entry" onclick="matchNumber()" />
+					<input type="text" size="10" maxlength="10" value="" id="mathAnswer"  />
+					<input type="button" value="Entry" onclick="matchNumber()" />
                 </td>
             </tr>
  	
@@ -34,8 +34,7 @@
 
             <tr>
                 <td>
-                    <input type="text" size="10" maxlength="10" value="" id="mathAnswer2"  />
-                   <!-- <input type="button" value="Remainder" onclick="matchNumber2()" /> -->
+					<input type="text" size="10" maxlength="10" value="" id="mathAnswer2"  />
                 </td>
             </tr>
  	
@@ -91,16 +90,7 @@ function matchNumber()
 		
 }
 
-/*function matchNumber2()
-{
-var answer = document.getElementById("mathAnswer2").value.toUpperCase();
-	
-	$("#mathAnswer2").css("visibility","hidden");
-	
-	
-	
-}
-*/
+
 function myfun2(a) {
 	return Math.floor((Math.random()*a)+1);
 }
@@ -145,19 +135,13 @@ f = Math.floor((Math.random()*4)+1);
 			s = "/"
 			y = myfun (50);
 			r = x % y;
-			z2 = x - r;
-			z = z2 / y;
+			z1 = x - r;
+			z = z1 / y;
 			
 		}
 document.write (x + " " + s + " " + y + " " + "=")
 
-/*function randomFunction()
-{
 
-alert(x + " " + s + " " + y + " " + "=");
-
-
-}*/
 
 
 
