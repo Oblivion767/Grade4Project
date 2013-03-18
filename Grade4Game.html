@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<table>
+ 
+
+
+       <tbody>
+
+            <tr>
+                <td>
+					<input type="text" size="10" maxlength="10" value="" id="test"  />
+					<input type="button" value="Entry" onclick="turn()"/>
+                </td>
+            </tr>
+ 	
+        </tbody>
+
+    </table>
+    <br />
+	
+	
+	
+	
+	
+	
+	
+<script>
+
+//var distance = 0;
+var characterTurn =new Boolean(false);
+var enemyTurn =new Boolean(true);
+var enemyNumber = 3;
+var difficulty = 1;
+var eDistance = new Array();
+
+	
+	if (difficulty == 1)
+	{
+		enemyNumber = 3;
+	}
+	else if (difficulty == 2)
+	{
+		enemyNumber = 4;
+	}
+	else
+	{
+		enemyNumber = 5;
+	}
+	
+	
+
+	for(i=0;i<enemyNumber;i++)
+	{
+		eDistance[i] = Math.floor((Math.random()*4)+2);
+		document.write(eDistance[i] + "<br>");
+	}
+
+function cTurn()
+{
+	
+	if ( characterTurn == true)
+	{
+	
+	}
+	
+	else 
+	{
+	
+	}
+
+}
+
+function eTurn()
+{
+	
+	if ( enemyTurn == true)
+	{
+		for(i=0;i<enemyNumber;i++)
+		{
+			eDistance[i] = eDistance[i] - 1;
+		
+			document.write(eDistance[i] +"<br>");
+		}
+	}
+	
+	else
+	{
+	
+	}
+
+}
+</script>
+
+
+
+
+
+
+</html>
