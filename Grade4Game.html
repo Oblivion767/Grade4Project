@@ -10,7 +10,7 @@
             <tr>
                 <td>
 					<input type="text" size="10" maxlength="10" value="" id="test"  />
-					<input type="button" value="Entry" onclick="timing()"/>
+					<input type="button" value="timeTest" onclick="timing()"/>
                 </td>
             </tr>
  	
@@ -18,7 +18,7 @@
 
     </table>
     <br />
-	<input type="button" value="Entry" onclick="eTurn()"/>
+	<input type="button" value="turnTest" onclick="eTurn()"/>
 	
 	<p id="countdown">30</p>
 	<p id="enemyPosition"></p>
@@ -37,15 +37,18 @@ var difficulty = 1;
 var eDistance = new Array();
 var time = 30;
 var a = 1;
+var eRandom;
+var timer = null;
+var enemyPosition = new Array();
 
   
 var enemyType =new Array();
-enemyType.push(new enemyChar ("Ghost", 1, 1));
-enemyType.push(new enemyChar ("Frankenstein", 2, 1)); 
-enemyType.push(new enemyChar ("Vampire", 1, 2)); 
-enemyType.push(new enemyChar ("enemyType 4", 1, 1)); 
-enemyType.push(new enemyChar ("enemyType 5", 1, 1)); 
-enemyType.push(new enemyChar ("enemyType 6", 1, 1));
+enemyType.push(new enemyChar ("Ghost", 1, 1, 0));
+enemyType.push(new enemyChar ("Frankenstein", 2, 1, 0)); 
+enemyType.push(new enemyChar ("Vampire", 1, 2, 0)); 
+enemyType.push(new enemyChar ("enemyType 4", 1, 1, 0)); 
+enemyType.push(new enemyChar ("enemyType 5", 1, 1, 0)); 
+enemyType.push(new enemyChar ("enemyType 6", 1, 1, 0));
 
 
 var candyType =new Array();
@@ -58,10 +61,18 @@ candyType.push(new candyAttributes ("candyType 6", 1));
 
 
 
-function enemyChar(name, health, speed) {
+function enemyChar(name, health, speed, position) {
 	this.health = health;
 	this.speed = speed;
 	this.name = name;
+	this.position = position;
+}
+
+function enemyPos(name, health, speed, position) {
+	this.health = health;
+	this.speed = speed;
+	this.name = name;
+	this.position = position;
 }
 
 function candyAttributes(name, damage) {
@@ -89,6 +100,11 @@ enemyChar.prototype.HP = function () {
 	return this.health;
 }
 
+enemyChar.prototype.pos = function () {
+	console.log(this.name +", " + this.health +", " + this.speed);
+	return this.position;
+}
+
 enemyChar.prototype.title = function () {
 	console.log(this.name +", " + this.health +", " + this.speed);
 	return this.name;
@@ -108,20 +124,47 @@ enemyChar.prototype.title = function () {
 	{
 		enemyNumber = 5;
 	}
+		
 	
+		enemyPos.prototype.title = function () 
+		{
+			return this.name;
+		}
 	
-
 	for(i=0;i<enemyNumber;i++)
 	{
-		eDistance[i] = Math.floor((Math.random()*4)+2);
-		document.write(eDistance[i] + "<br>");
+		eDistance[i] = Math.floor((Math.random()*4)+3);
+		eRandom = Math.floor((Math.random()*6)+0);
+		enemyPosition[i] = new enemyPos(name = enemyType[eRandom].title(), 
+		health = enemyType[eRandom].HP(), speed = enemyType[eRandom].movement());
 	}
 
+	enemyPos.prototype.title = function () 
+		{
+			return this.name;
+		}
 	
 	
-var timer = null;
-
-
+	for(i=0;i<enemyNumber;i++)
+	{
+		document.write(eDistance[i] + ", " + enemyPosition[i].title +"<br>");
+	}
+	var abc = 123;
+	function bbb(p)
+	{
+		var qqq = p;
+		console.log(qqq.speed);
+		qqq.speed = 1000;
+		console.log(qqq.speed);
+		console.log(enemyType[0].movement());
+		/*qqq += 1111;
+		console.log("qqq="+qqq);
+		console.log("abc="+abc);*/
+		
+	}
+	
+	//document.write(enemyPosition[0].title)
+	
 function timing()
 {
 	timer = setInterval(function(){intTimer()},1000);
@@ -147,7 +190,7 @@ function timing()
 function cTurn()
 {
 	
-	if ( characterTurn == true)
+	if (characterTurn == true)
 	{
 	
 	}
@@ -162,11 +205,11 @@ function cTurn()
 function eTurn()
 {
 		
-	if ( enemyTurn == true)
+	if (enemyTurn == true)
 	{
 		for(i=0;i<enemyNumber;i++)
 		{
-			eDistance[i] = eDistance[i] - enemyType[a].movement();
+			eDistance[i] = eDistance[i] - enemyType[eRandom].movement();
 		
 			document.write(eDistance[i] +"<br>")
 		}
