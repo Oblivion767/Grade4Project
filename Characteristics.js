@@ -1,42 +1,12 @@
-<!DOCTYPE html>
-<html>
-
-<table>
- 
-
-
-       <tbody>
-
-            <tr>
-                <td>
-					<input type="text" size="10" maxlength="10" value="" id="test"  />
-					<input type="button" value="timeTest" onclick="timing()"/>
-                </td>
-            </tr>
- 	
-        </tbody>
-
-    </table>
-    <br />
-	<input type="button" value="turnTest" onclick="eTurn()"/>
-	
-	<p id="countdown">30</p>
-	<p id="enemyPosition"></p>
-	
-</body>
-	
-	
-	
-	
-<script>
 
 var characterTurn =new Boolean(false);
 var enemyTurn =new Boolean(true);
 var enemyNumber;
-var difficulty = 1;
+var difficulty = 3;
 var eDistance = new Array();
 var time = 30;
 var a = 1;
+var playerHP = 3;
 var eRandom;
 var timer = null;
 var enemyPosition = new Array();
@@ -50,6 +20,11 @@ enemyType.push(new enemyChar ("enemyType 4", 1, 1, 0));
 enemyType.push(new enemyChar ("enemyType 5", 1, 1, 0)); 
 enemyType.push(new enemyChar ("enemyType 6", 1, 1, 0));
 
+var charType =new Array();
+enemyType.push(new charAttr ("1", 1));
+enemyType.push(new charAttr ("2", 2)); 
+enemyType.push(new charAttr ("3", 3));
+
 
 var candyType =new Array();
 candyType.push(new candyAttributes ("candyType 1", 1));
@@ -61,6 +36,12 @@ candyType.push(new candyAttributes ("candyType 6", 1));
 
 
 
+function charAttr(hpPic, health) {
+	this.hpPic = hpPic;
+	this.health = health;
+}
+
+
 function enemyChar(name, health, speed, position) {
 	this.health = health;
 	this.speed = speed;
@@ -68,11 +49,10 @@ function enemyChar(name, health, speed, position) {
 	this.position = position;
 }
 
-function enemyPos(name, health, speed, position) {
+function enemyPos(name, health, speed) {
 	this.health = health;
 	this.speed = speed;
 	this.name = name;
-	this.position = position;
 }
 
 function candyAttributes(name, damage) {
@@ -80,35 +60,41 @@ function candyAttributes(name, damage) {
 	this.name = name;
 }
 
+
+
 candyAttributes.prototype.dmg = function () {
-	console.log(this.name +", " + this.damage);
+
 	return this.damage;
 }
 
 candyAttributes.prototype.title = function () {
-	console.log(this.name +", " + this.damage);
+
 	return this.name;
 }
 
+
+
 enemyChar.prototype.movement = function () {
-	console.log(this.name +", " + this.health +", " + this.speed);
+
 	return this.speed;
 }
 
 enemyChar.prototype.HP = function () {
-	console.log(this.name +", " + this.health +", " + this.speed);
+
 	return this.health;
 }
 
 enemyChar.prototype.pos = function () {
-	console.log(this.name +", " + this.health +", " + this.speed);
+
 	return this.position;
 }
 
 enemyChar.prototype.title = function () {
-	console.log(this.name +", " + this.health +", " + this.speed);
+	
 	return this.name;
 }
+
+
 
 
 
@@ -131,39 +117,30 @@ enemyChar.prototype.title = function () {
 			return this.name;
 		}
 	
+		enemyPos.prototype.HP = function () 
+		{
+			return this.health;
+		}
+		
+		enemyPos.prototype.movement = function () 
+		{
+			return this.speed;
+		}
+		
 	for(i=0;i<enemyNumber;i++)
 	{
-		eDistance[i] = Math.floor((Math.random()*4)+3);
+		eDistance[i] = Math.floor((Math.random()*2)+1);
 		eRandom = Math.floor((Math.random()*6)+0);
-		enemyPosition[i] = new enemyPos(name = enemyType[eRandom].title(), 
-		health = enemyType[eRandom].HP(), speed = enemyType[eRandom].movement());
+		
+		enemyPosition[i] = new enemyPos(enemyType[eRandom].title(), 
+		enemyType[eRandom].HP(), enemyType[eRandom].movement());
+		
+		document.write(eDistance[i] + ", " + enemyPosition[i].title() + ", "
+		+ enemyPosition[i].HP() + ", " + enemyPosition[i].movement() +"<br>");
 	}
 
-	enemyPos.prototype.title = function () 
-		{
-			return this.name;
-		}
 	
 	
-	for(i=0;i<enemyNumber;i++)
-	{
-		document.write(eDistance[i] + ", " + enemyPosition[i].title +"<br>");
-	}
-	var abc = 123;
-	function bbb(p)
-	{
-		var qqq = p;
-		console.log(qqq.speed);
-		qqq.speed = 1000;
-		console.log(qqq.speed);
-		console.log(enemyType[0].movement());
-		/*qqq += 1111;
-		console.log("qqq="+qqq);
-		console.log("abc="+abc);*/
-		
-	}
-	
-	//document.write(enemyPosition[0].title)
 	
 function timing()
 {
@@ -192,11 +169,28 @@ function cTurn()
 	
 	if (characterTurn == true)
 	{
-	
-	}
-	
-	else 
-	{
+		if (playerHP == 3)
+		{
+		
+		}
+		
+		else if (playerHP == 2)
+		{
+		
+		}
+		
+		else if (playerHp == 1)
+		{
+		
+		}
+		
+		else
+		{
+		
+		}
+		
+		
+		
 	
 	}
 
@@ -209,19 +203,20 @@ function eTurn()
 	{
 		for(i=0;i<enemyNumber;i++)
 		{
-			eDistance[i] = eDistance[i] - enemyType[eRandom].movement();
-		
+			eDistance[i] = eDistance[i] - enemyPosition[i].movement();
+			if(playerHP != 0)
+			{
+				if(eDistance[i] <= 0)
+				{
+					playerHP = playerHP - 1;
+				}
+			}
+			
+			
 			document.write(eDistance[i] +"<br>")
 		}
-		
+		document.write("Player HP = " + playerHP)
 	}
 	
-	else
-	{
-	
-	}
-		
 }
 
-</script>
-</html>

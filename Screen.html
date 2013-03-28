@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "Screen">
+<head>
+     <h1> New Game
+    <p></p>
+    <title>screen</title>
+    <link rel="stylesheet" href="compactIssue.css">
+<script src="JQuery.js">
+</script>
+    <script src="tableSearch.js"> 
+ 	 </script> 
+    <script src="command.js"> 
+ 	 </script> 
+    <script src="mathQuestionGenerator.js"> 
+ 	 </script> 
+
+<a href="return" onclick="window.open('Menu.html')"> 
+Quit</a>
+
+</head>
+
+
+
+
+
+
+ 
+<body>
+
+
+	<div id='questionBlog'>
+
+			<img src="smiley.gif" alt="Smiley face" width="0%" height="0%" id='smile'>
+			
+			<input type="button" value="AIM" onclick="random();">
+	</div>
+	<div id='batBlog'>
+
+			<img src="bat.bmp" alt="bat" id='bat' onload="command.batSpam('batBlog', 100,1);">
+		
+	</div>
+
+	<br><br><br><br><br><br><br><br><br>
+	<div id='boyBlog'>
+	#######################
+	<img src="boyBack.png" style="float:middle" alt="Boy" width="50" height="50" id='boy' >
+	#######################
+		
+	</div>
+	<img src="land.png" alt="Boy" id='boy' >
+	<br>
+	<table>
+		<p id ='question'>Question</p>
+			   <tbody>
+				
+					<tr>
+						<td>
+							Answer<input type="text" size="10" maxlength="10" value="" id="mathAnswer"  />
+							<input type="button" disabled="true" value="THROW" id="throwButton" onclick="
+							matchNumber();" />
+						</td>
+					</tr>
+			
+				</tbody>
+
+	</table>
+	  
+		
+	<table>
+	 
+
+
+		   <tbody>
+
+				<tr>
+					<td>
+						Remainder<input type="text" size="10" maxlength="10" value="" id="mathAnswer2"  />
+						<br>-if nothing is here there is no remainder
+					</td>
+				</tr>
+		
+			</tbody>
+
+		</table>
+
+
+</body>
+
+
+
+
+</html>
